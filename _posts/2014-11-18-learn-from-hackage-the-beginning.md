@@ -23,7 +23,7 @@ Looking at the great [Code Deconstructed](https://www.youtube.com/watch?v=FEFETK
 
 The idea is to deconstruct a project and "rebuild" it from ground up, describing the process via the blog posts. Hopefully this will not end up as an idea and you will see a lot of projects "deconstructed".
 
-And to beging these series we will look at an awesome program you can find on Hackage which goes under name [hnop](http://hackage.haskell.org/package/hnop).  According to the description it was written by Ashley Yakeley.  The name can give you hint of what it does... It does nothing. ***No Operation*** in Haskell: 
+And to begin these series we will look at an awesome program you can find on Hackage which goes under name [hnop](http://hackage.haskell.org/package/hnop).  According to the description it was written by Ashley Yakeley.  The name can give you hint of what it does... It does nothing. ***No Operation*** in Haskell: 
 
 {% highlight haskell %}
 module Main where
