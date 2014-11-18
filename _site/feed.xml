@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Teach Me To Code Please</title>
+<generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2014-11-18T15:52:05+02:00</updated>
+<id>http://localhost:4000/</id>
+<author>
+  <name>Konstantin Saveljev</name>
+  <uri>http://localhost:4000/</uri>
+  <email>konstantin.saveljev@gmail.com</email>
+</author>
+
+</feed>
