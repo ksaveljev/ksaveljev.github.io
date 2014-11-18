@@ -17,7 +17,7 @@ There are good resources to start learning Haskell, like [Learn You a Haskell fo
 
 The problem comes after you finish with those books and resources. What now?  Pretty much every single time it is answered with something like *"you need to start coding your own project(s)"* or *"you could contribute to some open source project"*. Both of these suggestions are 100% correct but not all of us can easily go and start doing something or contributing to some project.
 
-I am one of those eager to learn but not really knowing what projects to work on or which open source project to contribute to. I look for different tutorials and articles which come up from time and I learn a lot from them. But for some reason I cannot work on something of my own. And I really want to.  
+I am one of those eager to learn but not really knowing what projects to work on or which open source project to contribute to. I look for different tutorials and articles which come up from time to time and I learn a lot from them. But for some reason I cannot work on something of my own. And I really want to.  
 
 Looking at the great [Code Deconstructed](https://www.youtube.com/watch?v=FEFETKhhq8w&list=PLxj9UAX4Em-IBXkvcC3MycLlcxyoi7v8B) series on YouTube I thought that it might be a good idea to start something similar. I thought it might help to learn a bit more if I go through some small projects on Hackage and try learning a thing or two from them. And sharing the knowledge with the others along the way. I am no good with screencasting, so I decided to go with blog posts.
 
