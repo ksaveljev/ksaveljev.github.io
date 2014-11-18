@@ -15,7 +15,7 @@ Learning Haskell it not an easy task. When you work with some imperative languag
 
 There are good resources to start learning Haskell, like [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/) and [Real World Haskell](http://book.realworldhaskell.org/). There are also other good books and resources which might help you to start fiddling with Haskell.
 
-The problem comes after you finish with those books and resources. What now?  Pretty much every single time it is answered with something like "you need to start coding your own project(s)" or "you could contribute to some open source project". Both of these suggestions are 100% correct but not all of us can easily go and start doing something or contributing to some project.
+The problem comes after you finish with those books and resources. What now?  Pretty much every single time it is answered with something like *"you need to start coding your own project(s)"* or *"you could contribute to some open source project"*. Both of these suggestions are 100% correct but not all of us can easily go and start doing something or contributing to some project.
 
 I am one of those eager to learn but not really knowing what projects to work on or which open source project to contribute to. I look for different tutorials and articles which come up from time and I learn a lot from them. But for some reason I cannot work on something of my own. And I really want to.  
 
