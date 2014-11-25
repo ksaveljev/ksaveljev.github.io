@@ -1,0 +1,377 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Learn From Hackage: Hsay &#8211; Teach Me To Code Please</title>
+<meta name="description" content="We deconstruct a small program written by Alexander Berntsen which (ab)uses Google Translate as a speech synthesiser.">
+<meta name="keywords" content="learn from hackage, hackage, haskell, tutorial, series, blog, deconstruct">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Learn From Hackage: Hsay">
+<meta name="twitter:description" content="We deconstruct a small program written by Alexander Berntsen which (ab)uses Google Translate as a speech synthesiser.">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/default-thumb.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn From Hackage: Hsay">
+<meta property="og:description" content="We deconstruct a small program written by Alexander Berntsen which (ab)uses Google Translate as a speech synthesiser.">
+<meta property="og:url" content="/learn-from-hackage-hsay/">
+<meta property="og:site_name" content="Teach Me To Code Please">
+
+
+
+
+
+<link rel="canonical" href="/learn-from-hackage-hsay/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Teach Me To Code Please Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="">Teach Me To Code Please</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+					    
+					        
+					    
+					    <li><a href="/posts/" >Posts</a></li>
+					  
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+
+	<img src="/images/ksaveljev.jpg" class="bio-photo" alt="Konstantin Saveljev bio photo">
+
+<h3>Konstantin Saveljev</h3>
+<p>I wish I could write code</p>
+<a href="mailto:konstantin.saveljev@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+
+
+
+
+
+
+<a href="http://github.com/ksaveljev" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+
+
+
+
+
+
+
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="/learn-from-hackage-hsay/" rel="bookmark" title="Learn From Hackage: Hsay">Learn From Hackage: Hsay</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p><strong>Some introduction about the package we are going to look at</strong></p>
+
+<p><strong>Small video showing how the program works</strong></p>
+
+<p>Let us imagine that we are writing this project from scratch on our own. But we
+keep everything related to the original author as it should be (name, email,
+license).</p>
+
+<p>First thing we need to do is to setup our project. I could simply create a
+folder “hsay” and start working there but I prefer to create a project on my
+GitHub page and clone it to my machine and start working in it. You can chose
+the best way you like if you are going to follow along.</p>
+
+<p>Now that we are inside our project folder we need to setup our Cabal project</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cabal init</code></pre></div>
+
+<p>Our initial cabal file will look something like this:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">blahblahb</code></pre></div>
+
+<p>We have kept the original author’s details and the license. We will keep our
+main module in “src” folder, that is why there is “hs-source-dirs” set to “src”.
+Our main module will reside in Hsay.hs file that is why there is a “main-is” set
+to “Hsay.hs”</p>
+
+<p>We will initialize our cabal sandbox as we are pretty sure to be adding some
+extra dependencies to the project in the nearest future.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cabal sandbox init</code></pre></div>
+
+<p>We create the structure of our program:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir src
+touch src/Hsay.hs</code></pre></div>
+
+<p>And we are ready to start working on the project!</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
+
+<span class="kr">import</span> <span class="nn">System.Environment</span> <span class="p">(</span><span class="nf">getArgs</span><span class="p">)</span>
+   
+<span class="kr">data</span> <span class="kt">Language</span> <span class="ow">=</span> <span class="kt">MkLang</span> <span class="p">{</span><span class="n">language</span> <span class="ow">::</span> <span class="kt">String</span><span class="p">}</span>
+              <span class="o">|</span> <span class="kt">DefLang</span> <span class="p">{</span><span class="n">language</span> <span class="ow">::</span> <span class="kt">String</span><span class="p">}</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+    <span class="n">args</span> <span class="ow">&lt;-</span> <span class="n">getArgs</span>
+    <span class="n">uncurry</span> <span class="n">tts</span> <span class="p">(</span><span class="n">getLanguage</span> <span class="n">args</span><span class="p">)</span>
+
+<span class="nf">getLanguage</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Language</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span>
+<span class="nf">getLanguage</span> <span class="ow">=</span> <span class="n">undefined</span>
+
+<span class="nf">tts</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">tts</span> <span class="ow">=</span> <span class="n">undefined</span></code></pre></div>
+
+<p>blahblahblah</p>
+
+<p>getArgs returned us a list of strings. We check that if the first string starts
+with ‘-‘ then the rest of it is considered to be a language. Otherwise we
+default to english language:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">getLanguage</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Language</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span>
+<span class="nf">getLanguage</span> <span class="p">((</span><span class="n">&#39;</span><span class="o">-</span><span class="n">&#39;</span><span class="kt">:</span><span class="n">l</span><span class="p">)</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="ow">=</span> <span class="p">(</span><span class="kt">MkLang</span> <span class="n">l</span><span class="p">,</span> <span class="n">xs</span><span class="p">)</span>
+<span class="nf">getLanguage</span> <span class="n">xs</span>           <span class="ow">=</span> <span class="p">(</span><span class="kt">DefLang</span> <span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="n">xs</span><span class="p">)</span></code></pre></div>
+
+<p>Something about “uncurry” used in tts call with getLanguage</p>
+
+<p>There are two different ways hsay is going to work. First one is where we get
+the input straight away via command line argument. Second one is interactive, so
+called Read Evaluate Say Loop (resl) where user will input a string and our
+program is going to “read” it, user will be able to input another string and so
+on, until he/she decies to quit this resl.</p>
+
+<p>First, we will implement the part of tts which is responsible for handling input
+via command line arguments.</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">tts</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">tts</span> <span class="n">lang</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="n">undefined</span>
+<span class="nf">tts</span> <span class="n">lang</span> <span class="n">args</span> <span class="ow">=</span> <span class="n">run</span> <span class="n">lang</span> <span class="n">args</span>
+
+<span class="nf">run</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">run</span> <span class="ow">=</span> <span class="n">undefined</span></code></pre></div>
+
+<p>Our run function accepts the language and the text to say. We are going to bla
+bla bla using spawnProcess and waitForProcess:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">run</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">run</span> <span class="n">lang</span> <span class="n">args</span> <span class="ow">=</span> <span class="n">fork</span> <span class="p">(</span><span class="n">build</span> <span class="n">lang</span> <span class="n">args</span><span class="p">)</span> <span class="o">&gt;&gt;=</span> <span class="n">exitWith</span>
+
+<span class="nf">fork</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">FilePath</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="kt">ExitCode</span>
+<span class="nf">fork</span> <span class="n">p</span> <span class="ow">=</span> <span class="n">uncurry</span> <span class="n">spawnProcess</span> <span class="n">p</span> <span class="o">&gt;&gt;=</span> <span class="n">waitForProcess</span>
+
+<span class="nf">build</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">FilePath</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span>
+<span class="nf">build</span> <span class="ow">=</span> <span class="n">undefined</span></code></pre></div>
+
+<p>The code we have added requires us to add a few more imports:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">import</span> <span class="nn">System.Exit</span> <span class="p">(</span><span class="nf">exitWith</span><span class="p">,</span> <span class="kt">ExitCode</span><span class="p">)</span>
+<span class="kr">import</span> <span class="nn">System.Process</span> <span class="p">(</span><span class="nf">spawnProcess</span><span class="p">,</span> <span class="nf">waitForProcess</span><span class="p">)</span></code></pre></div>
+
+<p>We are going to use a program called mpg123 which will be able to read the
+generated audio stream from the given url (google translate service url). Our
+build function is going to prepare everything for the spawnProcess to launch the
+mpg123 with correct arguments. For that we need some intial variables like path
+to the program and the arguments:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">defprogopts</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span>
+<span class="nf">defprogopts</span> <span class="ow">=</span> <span class="p">(</span><span class="s">&quot;mpg123&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;-q&quot;</span><span class="p">])</span></code></pre></div>
+
+<p>mpg123 can take multiple streams after the -q and play them in sequence. For now
+we are only going to build one url with everything that we want to be read:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">build</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">FilePath</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span>
+<span class="nf">build</span> <span class="n">lang</span> <span class="n">args</span> <span class="ow">=</span>
+    <span class="kr">let</span> <span class="n">textToRead</span> <span class="ow">=</span> <span class="n">intercalate</span> <span class="s">&quot; &quot;</span> <span class="n">args</span>
+    <span class="kr">in</span> <span class="p">(</span><span class="o">++</span> <span class="p">[</span><span class="n">mkUrl</span> <span class="n">lang</span> <span class="n">textToRead</span><span class="p">])</span> <span class="p">`</span><span class="n">second</span><span class="p">`</span> <span class="n">defprogopts</span></code></pre></div>
+
+<p>Everything we want to be read is in args. We simply join everything using a
+space and get a string of a text. Then we want create a correct url to google
+translate service for it to convert our text into audio. Finally we are using a
+fancy second method from Control.Arrow which applies the partially applied
+function (++ ourUrlToGoogleTranslateService) to the second element of our
+defprogopts pair… I am not familiar with Arrows yet, so this is a bit of magic
+for myself, I could figure it out in ghci, but still lack full understanding
+  (which hopefully will come with time):</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">ghci</span>
+<span class="kt">GHCi</span><span class="p">,</span> <span class="n">version</span> <span class="mf">7.8</span><span class="o">.</span><span class="mi">3</span><span class="kt">:</span> <span class="n">http</span><span class="kt">://</span><span class="n">www</span><span class="o">.</span><span class="n">haskell</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ghc</span><span class="o">/</span>  <span class="kt">:?</span> <span class="n">for</span> <span class="n">help</span>
+<span class="kt">Loading</span> <span class="n">package</span> <span class="n">ghc</span><span class="o">-</span><span class="n">prim</span> <span class="o">...</span> <span class="n">linking</span> <span class="o">...</span> <span class="n">done</span><span class="o">.</span>
+<span class="kt">Loading</span> <span class="n">package</span> <span class="n">integer</span><span class="o">-</span><span class="n">gmp</span> <span class="o">...</span> <span class="n">linking</span> <span class="o">...</span> <span class="n">done</span><span class="o">.</span>
+<span class="kt">Loading</span> <span class="n">package</span> <span class="n">base</span> <span class="o">...</span> <span class="n">linking</span> <span class="o">...</span> <span class="n">done</span><span class="o">.</span>
+<span class="nf">λ</span><span class="kt">:</span> <span class="kr">import</span> <span class="nn">Control.Arrow</span> <span class="p">(</span><span class="nf">second</span><span class="p">)</span>
+<span class="nf">λ</span><span class="kt">:</span> <span class="p">(</span><span class="o">++</span> <span class="p">[</span><span class="s">&quot;http://example.com/somestuff&quot;</span><span class="p">])</span> <span class="p">`</span><span class="n">second</span><span class="p">`</span> <span class="p">(</span><span class="s">&quot;mpg123&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;-q&quot;</span><span class="p">])</span>
+<span class="p">(</span><span class="s">&quot;mpg123&quot;</span><span class="p">,[</span><span class="s">&quot;-q&quot;</span><span class="p">,</span><span class="s">&quot;http://example.com/somestuff&quot;</span><span class="p">])</span></code></pre></div>
+
+<p>When we give this final pair to the spawn process it will launch mpg123 with the
+list of arguments we provided as a second item in this pair.</p>
+
+<p>Here is how we make an url to access google translate service to convert text to
+audio:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">mkUrl</span> <span class="ow">::</span> <span class="kt">Language</span> <span class="ow">-&gt;</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
+<span class="nf">mkUrl</span> <span class="n">lang</span> <span class="n">str</span> <span class="ow">=</span> <span class="s">&quot;http://translate.google.com/translate_tts?ie=UTF-8&amp;tl=&quot;</span>
+               <span class="o">++</span> <span class="n">language</span> <span class="n">lang</span> <span class="o">++</span> <span class="s">&quot;&amp;q=&quot;</span> <span class="o">++</span> <span class="n">urlEncode</span> <span class="n">str</span></code></pre></div>
+
+<p>Pretty simple, you can check <a href="http://translate.google.com/translate_tts?ie=UTF-8&amp;tl=en&amp;q=Hello world" target="_blank">this url</a>
+to hear “Hello world” being read by google translate.</p>
+
+<p>Finally, in order for our code to compile and run we need to add a few imports
+we just used in our methods:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">import</span> <span class="nn">Data.List</span> <span class="p">(</span><span class="nf">intercalate</span><span class="p">)</span>
+<span class="kr">import</span> <span class="nn">Control.Arrow</span> <span class="p">(</span><span class="nf">second</span><span class="p">)</span>
+<span class="kr">import</span> <span class="nn">Network.HTTP.Base</span> <span class="p">(</span><span class="nf">urlEncode</span><span class="p">)</span></code></pre></div>
+
+<p>Now we can run our program and play with it a bit:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cabal run -- Hello world! Isn<span class="err">&#39;</span>t it <span class="s2">&quot;great?&quot;</span></code></pre></div>
+
+<p><strong>TODO: somewhere in the blog post we need to add the correct dependencies to
+the cabal file</strong></p>
+
+<p>Our next step is run the program in RESL mode. For that we need to return to our
+tts function and work on the case when no text has been supplied as a command
+line argument.</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="article-author-bottom">
+          
+
+
+
+	<img src="/images/ksaveljev.jpg" class="bio-photo" alt="Konstantin Saveljev bio photo">
+
+<h3>Konstantin Saveljev</h3>
+<p>I wish I could write code</p>
+<a href="mailto:konstantin.saveljev@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+
+
+
+
+
+
+<a href="http://github.com/ksaveljev" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+
+
+
+
+
+
+
+
+        </div>
+        <p class="byline"><strong>Learn From Hackage: Hsay</strong> was published on <time datetime="2014-11-25T11:11:18+02:00">November 25, 2014</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="/learn-from-hackage-the-beginning/" title="Learn From Hackage: The Beginning">Learn From Hackage: The Beginning</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    
+
+<span>&copy; 2014 Konstantin Saveljev. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-56855765-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+	        
+
+</body>
+</html>

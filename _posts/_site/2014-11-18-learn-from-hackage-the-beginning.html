@@ -1,0 +1,21 @@
+<p>Learning Haskell it not an easy task. When you work with some imperative language and then switch to some other imperative language you can start working on complex projects in no time as the foundations are the same. Switching to Haskell brings frustration, we want to start coding complex projects in no time but cannot even imagine that it might take a lot of time and effort to learn all those things which are essential in Haskeller’s toolbox.</p>
+
+<p>There are good resources to start learning Haskell, like <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good!</a> and <a href="http://book.realworldhaskell.org/">Real World Haskell</a>. There are also other good books and resources which might help you to start fiddling with Haskell.</p>
+
+<p>The problem comes after you finish with those books and resources. What now?  Pretty much every single time it is answered with something like <em>“you need to start coding your own project(s)”</em> or <em>“you could contribute to some open source project”</em>. Both of these suggestions are 100% correct but not all of us can easily go and start doing something or contributing to some project.</p>
+
+<p>I am one of those eager to learn but not really knowing what projects to work on or which open source project to contribute to. I look for different tutorials and articles which come up from time and I learn a lot from them. But for some reason I cannot work on something of my own. And I really want to.  </p>
+
+<p>Looking at the great <a href="https://www.youtube.com/watch?v=FEFETKhhq8w&amp;list=PLxj9UAX4Em-IBXkvcC3MycLlcxyoi7v8B">Code Deconstructed</a> series on YouTube I thought that it might be a good idea to start something similar. I thought it might help to learn a bit more if I go through some small projects on Hackage and try learning a thing or two from them. And sharing the knowledge with the others along the way. I am no good with screencasting, so I decided to go with blog posts.</p>
+
+<p>The idea is to deconstruct a project and “rebuild” it from ground up, describing the process via the blog posts. Hopefully this will not end up as an idea and you will see a lot of projects “deconstructed”.</p>
+
+<p>And to begin these series we will look at an awesome program you can find on Hackage which goes under name <a href="http://hackage.haskell.org/package/hnop">hnop</a>.  According to the description it was written by Ashley Yakeley.  The name can give you hint of what it does… It does nothing. <strong><em>No Operation</em></strong> in Haskell: </p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
+
+<span class="c1">-- | main, do nothing</span>
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">return</span> <span class="nb">()</span></code></pre></div>
+
+<p>Hopefully future projects will be more useful than this one and will help us to learn something new. But I had to start with something!</p>

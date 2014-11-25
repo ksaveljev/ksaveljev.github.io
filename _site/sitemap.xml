@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4000/learn-from-hackage-the-beginning/</loc>
+    <loc>/learn-from-hackage-hsay/</loc>
+    <lastmod>2014-11-25T11:11:18+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/learn-from-hackage-the-beginning/</loc>
     <lastmod>2014-11-18T15:53:57+02:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/</loc>
-    <lastmod>2014-11-18T17:02:54+02:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2014-11-25T15:38:14+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/theme-setup/</loc>
-    <lastmod>2014-11-18T17:02:54+02:00</lastmod>
+    <loc>/theme-setup/</loc>
+    <lastmod>2014-11-25T15:38:14+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/posts/</loc>
-    <lastmod>2014-11-18T17:02:54+02:00</lastmod>
+    <loc>/posts/</loc>
+    <lastmod>2014-11-25T15:38:14+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/about/</loc>
-    <lastmod>2014-11-18T17:02:54+02:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2014-11-25T15:38:14+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
